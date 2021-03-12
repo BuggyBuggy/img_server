@@ -1,0 +1,38 @@
+{
+  "name": "node_base",
+  "version": "1.0.0",
+  "private": true,
+  "description": "node express base code",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "start_local": "node -r dotenv/config ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lily chen",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.1",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "^4.16.3",
+    "fs": "0.0.1-security",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-sass": "^4.0.2",
+    "http-errors": "~1.6.2",
+    "multer": "^1.4.2",
+    "mysql": "^2.16.0",
+    "request": "^2.88.0",
+    "socket.io": "^2.1.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^7.0.1",
+    "gulp-uglify": "^3.0.1"
+  }
+}
