@@ -26,7 +26,7 @@
         // 檔案位置
         console.log(e.target.files[0]);
         // 新增 formData
-        const formDataSingle = new FormData();
+        let formDataSingle = new FormData();
         formDataSingle.append("image", e.target.files[0]);
         // 傳送資料
         axios
@@ -54,24 +54,26 @@
         // 檔案位置
         console.log(e.target.files);
         // 新增 formData
-        const formDataMultiple = new FormData();
-        formDataSingle.append("image", e.target.files);
-        console.log({ formDataMultiple });
+        let formDataMultiple = new FormData();
+        // formDataSingle.append("image", e.target.files);
+        for (let i = 0; i < e.target.files.length; i++) {
+          formDataMultiple.append("image", e.target.files[i]);
+        }
         // 傳送資料
-        // axios
-        //   .post(apiUrlMultiple, formDataMultiple, {
-        //     headers: {
-        //       "Content-Type": "multipart/form-data",
-        //     },
-        //   })
-        //   .then((response) => {
-        //     console.log("formDataMultiple");
-        //     console.log(response.data);
-        //   })
-        //   .catch((error) => {
-        //     console.log("formDataMultiple");
-        //     console.log(error);
-        //   });
+        axios
+          .post(apiUrlMultiple, formDataMultiple, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((response) => {
+            console.log("formDataMultiple");
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log("formDataMultiple");
+            console.log(error);
+          });
       }
       files.addEventListener("change", uploadImgMultiple);
     </script>
