@@ -1,26 +1,23 @@
-const express = require('express')
-const multer = require("multer")
+const express = require("express");
+const multer = require("multer");
 
-let router = express.Router()
+let router = express.Router();
 
-const ImgController 		= require('../controllers/ImgController')
+const ImgController = require("../controllers/ImgController");
 
-// 設置圖片儲存路徑
+// 初始化設定
 const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    console.log(req.body)
-    cb(null, './images')
+  destination: function (req, file, cb) {
+    cb(null, "public/img_upload");
   },
-  filename: function(req, file, cb) {
-    cb(null, `${Date.now()}-${file.originalname}`)
-  }
-})
+  filename: function (req, file, cb) {
+    cb(null, `${file.originalname}-${Date.now()}`);
+  },
+});
+const upload = multer({ storage: storage });
 
-// 新增配置文件到muler對象
-const img = multer({ storage: storage })
+router.post("/single", upload.single("image"), ImgController.single);
+router.post("/multiple", upload.array("images", 20), ImgController.multiple);
+router.get("/index", ImgController.index);
 
-router.post('/img', img.array('img', 20), ImgController.action)
-router.post('/delete', ImgController.delete)
-router.post('/base64', ImgController.base64)
-
-module.exports = router
+module.exports = router;

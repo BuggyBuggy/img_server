@@ -1,11 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Index</title>
-</head>
-<body>
-  <h1>YO</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>upload img</title>
+  </head>
+  <body>
+    single: <input type="file" name="image" id="single" />
+    <br />
+    <br />
+    multiple: <input type="file" name="images" id="multiple" multiple />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+      integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // 單圖
+      const apiUrlSingle = `/api/single`;
+      // Client JavaScript
+      const file = document.querySelector("#single");
+      function uploadImgSingle(e) {
+        // 檔案位置
+        console.log(e.target.files[0]);
+        // 新增 formData
+        const formDataSingle = new FormData();
+        formDataSingle.append("image", e.target.files[0]);
+        // 傳送資料
+        axios
+          .post(apiUrlSingle, formDataSingle, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then((response) => {
+            console.log("formDataSingle");
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.log("formDataSingle");
+            console.log(error);
+          });
+      }
+      file.addEventListener("change", uploadImgSingle);
+
+      // 多圖
+      const apiUrlMultiple = `/api/multiple`;
+      // Client JavaScript
+      const files = document.querySelector("#multiple");
+      function uploadImgMultiple(e) {
+        // 檔案位置
+        console.log(e.target.files);
+        // 新增 formData
+        const formDataMultiple = new FormData();
+        formDataSingle.append("image", e.target.files);
+        console.log({ formDataMultiple });
+        // 傳送資料
+        // axios
+        //   .post(apiUrlMultiple, formDataMultiple, {
+        //     headers: {
+        //       "Content-Type": "multipart/form-data",
+        //     },
+        //   })
+        //   .then((response) => {
+        //     console.log("formDataMultiple");
+        //     console.log(response.data);
+        //   })
+        //   .catch((error) => {
+        //     console.log("formDataMultiple");
+        //     console.log(error);
+        //   });
+      }
+      files.addEventListener("change", uploadImgMultiple);
+    </script>
+  </body>
 </html>
