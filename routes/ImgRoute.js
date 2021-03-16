@@ -8,6 +8,7 @@ const ImgController = require("../controllers/ImgController");
 // 初始化設定
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
+    console.log("req.fillllle", req.files);
     cb(null, "public/img_upload");
   },
   filename: function (req, file, cb) {

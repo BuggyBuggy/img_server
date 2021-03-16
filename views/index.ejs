@@ -57,23 +57,26 @@
         let formDataMultiple = new FormData();
         // formDataSingle.append("image", e.target.files);
         for (let i = 0; i < e.target.files.length; i++) {
-          formDataMultiple.append("image", e.target.files[i]);
+          formDataMultiple.append(
+            "images[]",
+            JSON.stringify(e.target.files[i])
+          );
         }
         // 傳送資料
-        axios
-          .post(apiUrlMultiple, formDataMultiple, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then((response) => {
-            console.log("formDataMultiple");
-            console.log(response.data);
-          })
-          .catch((error) => {
-            console.log("formDataMultiple");
-            console.log(error);
-          });
+        // axios
+        //   .post(apiUrlMultiple, formDataMultiple, {
+        //     headers: {
+        //       "Content-Type": "multipart/form-data",
+        //     },
+        //   })
+        //   .then((response) => {
+        //     console.log("formDataMultiple");
+        //     console.log(response.data);
+        //   })
+        //   .catch((error) => {
+        //     console.log("formDataMultiple");
+        //     console.log(error);
+        //   });
       }
       files.addEventListener("change", uploadImgMultiple);
     </script>

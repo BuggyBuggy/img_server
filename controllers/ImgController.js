@@ -21,7 +21,7 @@ ImgController.single = async function (req, res) {
 ImgController.multiple = async function (req, res) {
   let fileInfo = [];
   const files = req.files;
-  console.log(files);
+  console.log(req.body);
   // req.files.forEach(function (v) {
   //   fileInfo.push({
   //     originalName: v.originalname,
